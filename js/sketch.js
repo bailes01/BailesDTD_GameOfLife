@@ -95,6 +95,7 @@ function createNewGrid() {
 function draw() {
   if (started) {
     if (!paused) {
+      drawing = null;
       frameRateOutput.innerHTML =
         "Max frame rate (" +
         frameRateSlider.value() +
@@ -161,7 +162,6 @@ function canvasClicked() {
 }
 
 function canvasReleased() {
-  drawing = null;
   frameRate(frameRateSlider.value());
 }
 
