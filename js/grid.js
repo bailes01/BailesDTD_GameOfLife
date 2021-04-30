@@ -1,7 +1,43 @@
+class Shape {
+  /**
+   * @param {Array} points
+   */
+  constructor(points) {
+    this.points = points;
+    this.i = [];
+    this.j = [];
+    for (var k = 0; k < this.points.length; k++) {
+      this.i.push(points[k][0]);
+      this.j.push(points[k][1]);
+    }
+  }
+}
+
+var Shapes = {
+  "neighbour": new Shape([
+    [-1, -1],
+    [-1, 0],
+    [-1, 1],
+    [0, -1],
+    [0, 1],
+    [1, -1],
+    [1, 0],
+    [1, 1],
+  ]),
+
+  "glider": new Shape([
+    [0, 0],
+    [0, 1],
+    [0, 2],
+    [1, 2],
+    [2, 1]
+  ])
+}
+
+
 class Grid {
   constructor(cols, rows) {
-    this.iarr = [-1, -1, -1, 0, 0, +1, +1, +1];
-    this.jarr = [-1, 0, +1, -1, +1, -1, 0, +1];
+    this.neighbourShape = Shapes["neighbour"];
     this.cols = cols;
     this.rows = rows;
     this.cellWidth = width / cols;
@@ -17,12 +53,19 @@ class Grid {
     }
   }
 
+  drawShape(i, j, shapeToDraw) {
+    var shapeObject = Shapes[shapeToDraw];
+    for (var k = 0; k < shapeObject.points.length; k++){
+      this.cells[i + shapeObject.i[k]][j + shapeObject.j[k]] = 1;
+    }
+  }
+
   getNeighbours(i, j) {
     var neighbours = [];
     var neighbourSum = 0;
     for (var k = 0; k < 8; k++) {
-      var Iindex = i + this.iarr[k];
-      var Jindex = j + this.jarr[k];
+      var Iindex = i + this.neighbourShape.i[k];
+      var Jindex = j + this.neighbourShape.j[k];
       // if (Iindex >= 0 && Iindex < this.cols && Jindex >= 0 && Jindex < this.rows) {
       if (Iindex >= this.cols) {
         Iindex = 0;
@@ -74,6 +117,21 @@ class Grid {
     }
     this.cells = nextCells;
   }
+
+  renderCell(i, j) {
+    if (this.cells[i][j] == 0) {
+      fill(0);
+    } else {
+      fill(200, 0, 200);
+    }
+    rect(
+      i * this.cellWidth,
+      j * this.cellHeight,
+      this.cellWidth,
+      this.cellHeight
+    );
+  }
+
   render() {
     if (paused) {
       stroke(50);

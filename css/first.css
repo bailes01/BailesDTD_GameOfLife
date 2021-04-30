@@ -6,7 +6,6 @@ body {
   margin: 0;
   background-color: #ff96e5;
   display: flex;
-  direction: row;
 }
 
 #canvas-container {
@@ -47,11 +46,12 @@ h2{
   font-variant: small-caps;
   font-size: xx-large;
 }
-table{
+.desc{
   text-align: center;
-  width:100%
+  width:100%;
+  border-collapse: collapse;
 }
-th{
+.desc th{
   text-align: center;
   margin: 10px 10px 0 10px;
   color: #585858;
@@ -59,12 +59,23 @@ th{
   font-size: x-large;
   width: 25%;
 }
-td{
+.desc td{
   padding:5px;
   color: #303030;
   font-size: large;
 }
-table, th, td{
+.desc table, .desc th, .desc td{
   border: 1px solid black;
-  border-collapse: collapse;
+}
+
+.controls{
+  width:100%;
+}
+
+.controls td{
+  padding-top:20px;
+  padding-bottom: 20px;
+  font-size: x-large;
+  text-align: center;
+  width:25%;
 }

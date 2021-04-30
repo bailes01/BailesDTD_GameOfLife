@@ -14,10 +14,13 @@
         <p>
           Conway's Game of Life is a cellular automata. It shows how complex
           behavior can arise from simple rules. The state of each cell is
-          determined by the state of it's 8 surrounding cells.
+          determined by the state of it's 8 surrounding cells. Conways game of 
+          life is traditionally set on an infinite grid. I have made a small 
+          change and this grid wraps around. What goes off the right side of 
+          the screen appears on the left, same with up and down.
         </p>
         <h2>The Rules</h2>
-        <table>
+        <table class="desc">
           <tr>
             <th colspan="3">If cell is populated</th>
             <th>If cell is not populated</th>
@@ -33,6 +36,22 @@
             <td>Cells with four or more neighbors die of crippling social anxiety</td>
             <td>Cells with two or three neighbors live on</td>
             <td>Cells with three neighbors become alive</td>
+          </tr>
+        </table>
+        <table class="controls">
+          <tr>
+            <td colspan="2" id="grid-size">Size of grid</td>
+            <td colspan="2"id="grid-slider"></td>
+          </tr>
+          <tr>
+            <td colspan="2" id="frame-rate">Frame rate</td>
+            <td colspan="2" id="frame-slider"></td>
+          </tr>
+          <tr>
+            <td id="pause-button"></td>
+            <td id="clear-button"></td>
+            <td id="random-button"></td>
+            <td id="draw-button"></td>
           </tr>
         </table>
       </div>
