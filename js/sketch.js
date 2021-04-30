@@ -1,10 +1,12 @@
-///<reference path='../p5.global-mode.d.ts'/>
+/// @ts-check
+/// <reference path="../../../node_modules/@types/p5/global.d.ts" />
+
 var paused = true;
 var started = false;
-
 var grid;
 var newGridButton;
-var gridSizeSlider;
+var pauseButton;
+var cellCountSlider;
 var frameRateSlider;
 var body = document.querySelector("body");
 var canvasContainer = document.getElementById("canvas-container");
@@ -25,8 +27,8 @@ function setup() {
   canvasContainer.style.height = gridSize + "px";
   canvasContainer.style.width = gridSize + "px";
 
-  myCanvas = createCanvas(gridSize, gridSize);
-  myCanvas.parent(canvasContainer);
+	myCanvas = createCanvas(gridSize, gridSize);
+	myCanvas.parent(canvasContainer);
   myCanvas.mouseClicked(canvasClicked);
 
   pauseButton = createButton("Start (SpaceBar)");
@@ -42,9 +44,10 @@ function setup() {
   frameRateSlider = createSlider(1, 30, 10, 1);
   frameRateSlider.parent(panel);
   frameRateSlider.style("width", "80px");
-
+  
+  
   createNewGrid();
-  frameRate(frameRateSlider.value());
+  frameRate(10);
 }
 
 function togglePause() {
