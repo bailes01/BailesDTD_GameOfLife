@@ -35,7 +35,7 @@ function setup() {
   pauseButton.parent(panel);
   pauseButton.mouseReleased(togglePause);
 
-  cellCountSlider = createSlider(10, gridSize, 50, 1);
+  cellCountSlider = createSlider(10, gridSize/3, 50, 1);
   cellCountSlider.parent(panel);
   cellCountSlider.style("width", "80px");
   newGridButton = createButton("New Grid (N)");
@@ -53,7 +53,6 @@ function setup() {
 function togglePause() {
   started = true;
   paused = !paused;
-  console.log(paused);
 }
 function createNewGrid() {
   paused = true;
